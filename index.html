@@ -1,0 +1,1025 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NovaWatch | Smarter Time, Smarter Life</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Montserrat:wght@700;800;900&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #0a0a16;
+            --secondary: #1c1c2e;
+            --accent: #00d9ff;
+            --accent-alt: #7a00ff;
+            --text: #f0f0f0;
+            --text-secondary: #b0b0c0;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: var(--text);
+            min-height: 100vh;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        body::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at 20% 30%, rgba(122, 0, 255, 0.15) 0%, transparent 40%),
+                        radial-gradient(circle at 80% 70%, rgba(0, 217, 255, 0.1) 0%, transparent 40%);
+            z-index: -1;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header Styles */
+        header {
+            padding: 24px 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            background: rgba(10, 10, 22, 0.8);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .logo-icon {
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, var(--accent), var(--accent-alt));
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .logo-text {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 900;
+            font-size: 24px;
+            letter-spacing: -0.5px;
+            background: linear-gradient(to right, var(--accent), var(--accent-alt));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 32px;
+        }
+
+        nav a {
+            color: var(--text);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 16px;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        nav a::after {
+            content: "";
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--accent);
+            transition: width 0.3s ease;
+        }
+
+        nav a:hover {
+            color: var(--accent);
+        }
+
+        nav a:hover::after {
+            width: 100%;
+        }
+
+        .cta-button {
+            background: linear-gradient(135deg, var(--accent), var(--accent-alt));
+            color: var(--primary);
+            border: none;
+            padding: 12px 24px;
+            border-radius: 30px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 16px;
+            box-shadow: 0 4px 20px rgba(0, 217, 255, 0.3);
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 25px rgba(0, 217, 255, 0.4);
+        }
+
+        /* Hero Section */
+        .hero {
+            padding: 80px 0 40px;
+            display: flex;
+            align-items: center;
+            min-height: 85vh;
+        }
+
+        .hero-content {
+            display: flex;
+            align-items: center;
+            gap: 60px;
+            width: 100%;
+        }
+
+        .hero-text {
+            flex: 1;
+            max-width: 600px;
+        }
+
+        .tagline {
+            font-size: 18px;
+            color: var(--accent);
+            font-weight: 600;
+            margin-bottom: 16px;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+        }
+
+        h1 {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 900;
+            font-size: 64px;
+            line-height: 1.1;
+            margin-bottom: 24px;
+            letter-spacing: -1.5px;
+        }
+
+        h1 span {
+            background: linear-gradient(to right, var(--accent), var(--accent-alt));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .subtitle {
+            font-size: 20px;
+            color: var(--text-secondary);
+            line-height: 1.6;
+            margin-bottom: 40px;
+            max-width: 500px;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 20px;
+        }
+
+        .watch-display {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            position: relative;
+        }
+
+        /* Enhanced CSS Watch Design */
+        .watch-container {
+            width: 400px;
+            height: 400px;
+            background: linear-gradient(135deg, rgba(26, 26, 46, 0.8), rgba(10, 10, 22, 0.8));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            box-shadow: 
+                0 20px 50px rgba(0, 0, 0, 0.3),
+                inset 0 0 30px rgba(0, 217, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .watch-screen {
+            width: 300px;
+            height: 300px;
+            background: linear-gradient(145deg, #0a0a1a, #000000);
+            border-radius: 50%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 
+                inset 0 0 20px rgba(0, 217, 255, 0.1),
+                0 0 30px rgba(0, 0, 0, 0.5);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .watch-screen::before {
+            content: "";
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at 30% 30%, rgba(0, 217, 255, 0.05) 0%, transparent 70%);
+        }
+
+        .watch-time {
+            font-size: 56px;
+            font-weight: 700;
+            letter-spacing: 2px;
+            margin-bottom: 10px;
+            font-family: 'Montserrat', sans-serif;
+            background: linear-gradient(to bottom, #ffffff, #e0e0ff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 0 0 10px rgba(0, 217, 255, 0.3);
+        }
+
+        .watch-date {
+            font-size: 18px;
+            color: var(--text-secondary);
+            margin-bottom: 30px;
+            letter-spacing: 1px;
+        }
+
+        .watch-search {
+            background: rgba(30, 30, 48, 0.6);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 50px;
+            padding: 12px 20px;
+            width: 80%;
+            color: var(--text);
+            font-size: 16px;
+            text-align: center;
+            backdrop-filter: blur(5px);
+            transition: all 0.3s ease;
+        }
+
+        .watch-search:focus {
+            outline: none;
+            border-color: var(--accent);
+            box-shadow: 0 0 15px rgba(0, 217, 255, 0.3);
+            transform: scale(1.03);
+        }
+
+        .watch-search::placeholder {
+            color: var(--text-secondary);
+        }
+
+        .watch-highlight {
+            position: absolute;
+            width: 500px;
+            height: 500px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(0, 217, 255, 0.1) 0%, transparent 70%);
+            z-index: -1;
+            animation: pulse 6s infinite alternate;
+        }
+
+        /* Watch crown */
+        .watch-crown {
+            position: absolute;
+            right: -15px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 20px;
+            height: 40px;
+            background: linear-gradient(to right, #2a2a3a, #1a1a2a);
+            border-radius: 5px;
+            box-shadow: 2px 0 10px rgba(0, 0, 0, 0.5);
+        }
+
+        @keyframes pulse {
+            0% { opacity: 0.3; }
+            100% { opacity: 0.7; }
+        }
+
+        /* Features Section */
+        .features {
+            padding: 100px 0;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 70px;
+        }
+
+        .section-title h2 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 42px;
+            font-weight: 800;
+            margin-bottom: 16px;
+        }
+
+        .section-title p {
+            font-size: 18px;
+            color: var(--text-secondary);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .feature-card {
+            background: rgba(26, 26, 46, 0.6);
+            border-radius: 20px;
+            padding: 40px 30px;
+            text-align: center;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            opacity: 0;
+            transform: translateY(20px);
+        }
+
+        .feature-card.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .feature-card:hover {
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+            border-color: rgba(0, 217, 255, 0.2);
+        }
+
+        .feature-icon {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 25px;
+            font-size: 32px;
+            color: var(--accent);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s ease;
+        }
+
+        .feature-card:hover .feature-icon {
+            transform: scale(1.1);
+            background: linear-gradient(135deg, var(--accent-alt), var(--accent));
+            color: var(--primary);
+        }
+
+        .feature-card h3 {
+            font-size: 24px;
+            margin-bottom: 15px;
+        }
+
+        .feature-card p {
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+
+        /* Pricing Section */
+        .pricing {
+            padding: 100px 0;
+            background: rgba(10, 10, 22, 0.4);
+        }
+
+        .pricing-cards {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            flex-wrap: wrap;
+        }
+
+        .pricing-card {
+            background: rgba(26, 26, 46, 0.6);
+            border-radius: 20px;
+            padding: 40px 30px;
+            text-align: center;
+            flex: 1;
+            min-width: 280px;
+            max-width: 350px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            transition: all 0.3s ease;
+        }
+
+        .pricing-card.popular {
+            border: 1px solid var(--accent);
+            transform: translateY(-20px);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .pricing-card.popular::before {
+            content: "POPULAR";
+            position: absolute;
+            top: 20px;
+            right: -40px;
+            background: var(--accent);
+            color: var(--primary);
+            padding: 5px 40px;
+            transform: rotate(45deg);
+            font-weight: 700;
+            font-size: 12px;
+        }
+
+        .pricing-card h3 {
+            font-size: 24px;
+            margin-bottom: 20px;
+            color: var(--accent);
+        }
+
+        .price {
+            font-size: 48px;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 800;
+            margin-bottom: 30px;
+            background: linear-gradient(to right, var(--accent), var(--accent-alt));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .price span {
+            font-size: 24px;
+            color: var(--text-secondary);
+        }
+
+        .pricing-features {
+            list-style: none;
+            margin-bottom: 30px;
+            text-align: left;
+        }
+
+        .pricing-features li {
+            padding: 10px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .pricing-features li i {
+            color: var(--accent);
+        }
+
+        /* Tech Specs Section */
+        .tech-specs {
+            padding: 100px 0;
+        }
+
+        .specs-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .spec-item {
+            background: rgba(26, 26, 46, 0.6);
+            border-radius: 15px;
+            padding: 25px;
+            text-align: center;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .spec-value {
+            font-size: 36px;
+            font-weight: 700;
+            margin-bottom: 10px;
+            color: var(--accent);
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        .spec-label {
+            color: var(--text-secondary);
+            font-size: 16px;
+        }
+
+        /* Footer */
+        footer {
+            background: rgba(10, 10, 22, 0.8);
+            padding: 60px 0 30px;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 50px;
+        }
+
+        .footer-column h3 {
+            font-size: 20px;
+            margin-bottom: 20px;
+            position: relative;
+            padding-bottom: 10px;
+        }
+
+        .footer-column h3::after {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 40px;
+            height: 2px;
+            background: var(--accent);
+        }
+
+        .footer-column p {
+            color: var(--text-secondary);
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .social-links a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: var(--secondary);
+            color: var(--text);
+            transition: all 0.3s ease;
+        }
+
+        .social-links a:hover {
+            background: var(--accent);
+            color: var(--primary);
+            transform: translateY(-3px);
+        }
+
+        .footer-column ul {
+            list-style: none;
+        }
+
+        .footer-column ul li {
+            margin-bottom: 12px;
+        }
+
+        .footer-column ul li a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .footer-column ul li a:hover {
+            color: var(--accent);
+            padding-left: 5px;
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            color: var(--text-secondary);
+            font-size: 14px;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 992px) {
+            .hero-content {
+                flex-direction: column;
+                gap: 40px;
+                text-align: center;
+            }
+
+            .hero-text {
+                max-width: 100%;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+            }
+
+            h1 {
+                font-size: 48px;
+            }
+
+            .watch-container {
+                width: 320px;
+                height: 320px;
+            }
+
+            .watch-screen {
+                width: 240px;
+                height: 240px;
+            }
+
+            .watch-time {
+                font-size: 42px;
+            }
+            
+            .pricing-card.popular {
+                transform: translateY(0);
+            }
+        }
+
+        @media (max-width: 768px) {
+            nav {
+                display: none;
+            }
+
+            .hero {
+                padding: 60px 0 20px;
+            }
+
+            h1 {
+                font-size: 36px;
+            }
+
+            .subtitle {
+                font-size: 18px;
+            }
+
+            .hero-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .watch-container {
+                width: 280px;
+                height: 280px;
+            }
+
+            .watch-screen {
+                width: 210px;
+                height: 210px;
+            }
+
+            .section-title h2 {
+                font-size: 32px;
+            }
+            
+            .pricing-cards {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <div class="logo-icon">
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <div class="logo-text">NovaWatch</div>
+                </div>
+                <nav>
+                    <ul>
+                        <li><a href="#features">Features</a></li>
+                        <li><a href="#pricing">Pricing</a></li>
+                        <li><a href="#specs">Tech Specs</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                    </ul>
+                </nav>
+                <button class="cta-button">Pre-order Now</button>
+            </div>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <div class="hero-text">
+                    <div class="tagline">Smarter Time: Smarter Life</div>
+                    <h1>The Future on <span>Your Wrist</span></h1>
+                    <p class="subtitle">Experience the next generation of wearable technology. Seamlessly connected, intuitively designed, and elegantly crafted for modern life.</p>
+                    <div class="hero-buttons">
+                        <button class="cta-button">Explore Features</button>
+                        <button class="cta-button" style="background: transparent; border: 2px solid var(--accent); color: var(--accent); box-shadow: none;">Watch Demo</button>
+                    </div>
+                </div>
+                <div class="watch-display">
+                    <div class="watch-highlight"></div>
+                    <div class="watch-container">
+                        <div class="watch-crown"></div>
+                        <div class="watch-screen">
+                            <div class="watch-time">10:09</div>
+                            <div class="watch-date">2021 WM</div>
+                            <input type="text" class="watch-search" placeholder="Type here to search">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="features" class="features">
+        <div class="container">
+            <div class="section-title">
+                <h2>Smart Features</h2>
+                <p>Designed for the modern lifestyle with cutting-edge technology</p>
+            </div>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-heartbeat"></i>
+                    </div>
+                    <h3>Health Monitoring</h3>
+                    <p>Track heart rate, blood oxygen, sleep patterns, and stress levels for complete wellness insights.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-bolt"></i>
+                    </div>
+                    <h3>Long Battery Life</h3>
+                    <p>Up to 14 days of battery life on a single charge. Power that keeps up with you.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-water"></i>
+                    </div>
+                    <h3>Water Resistant</h3>
+                    <p>Swim, shower, and sweat without worry. Rated 5ATM for water resistance.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-mobile-alt"></i>
+                    </div>
+                    <h3>Smart Connectivity</h3>
+                    <p>Receive calls, messages, and app notifications directly on your wrist.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-map-marker-alt"></i>
+                    </div>
+                    <h3>GPS Tracking</h3>
+                    <p>Accurate GPS for running, cycling, and outdoor activities with route mapping.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-paint-brush"></i>
+                    </div>
+                    <h3>Customizable</h3>
+                    <p>Personalize with interchangeable bands and hundreds of watch faces.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="pricing" class="pricing">
+        <div class="container">
+            <div class="section-title">
+                <h2>Pricing Options</h2>
+                <p>Choose the perfect NovaWatch for your lifestyle</p>
+            </div>
+            <div class="pricing-cards">
+                <div class="pricing-card">
+                    <h3>NovaWatch Lite</h3>
+                    <div class="price">$249<span>/watch</span></div>
+                    <ul class="pricing-features">
+                        <li><i class="fas fa-check"></i> Basic health tracking</li>
+                        <li><i class="fas fa-check"></i> 7-day battery life</li>
+                        <li><i class="fas fa-check"></i> Notifications</li>
+                        <li><i class="fas fa-check"></i> 3ATM water resistant</li>
+                        <li><i class="fas fa-check"></i> 50+ watch faces</li>
+                    </ul>
+                    <button class="cta-button">Pre-order Now</button>
+                </div>
+                <div class="pricing-card popular">
+                    <h3>NovaWatch Pro</h3>
+                    <div class="price">$349<span>/watch</span></div>
+                    <ul class="pricing-features">
+                        <li><i class="fas fa-check"></i> Advanced health sensors</li>
+                        <li><i class="fas fa-check"></i> 14-day battery life</li>
+                        <li><i class="fas fa-check"></i> Built-in GPS</li>
+                        <li><i class="fas fa-check"></i> 5ATM water resistant</li>
+                        <li><i class="fas fa-check"></i> 200+ watch faces</li>
+                        <li><i class="fas fa-check"></i> Wireless charging</li>
+                    </ul>
+                    <button class="cta-button">Pre-order Now</button>
+                </div>
+                <div class="pricing-card">
+                    <h3>NovaWatch Elite</h3>
+                    <div class="price">$499<span>/watch</span></div>
+                    <ul class="pricing-features">
+                        <li><i class="fas fa-check"></i> Premium health monitoring</li>
+                        <li><i class="fas fa-check"></i> 21-day battery life</li>
+                        <li><i class="fas fa-check"></i> Dual-band GPS</li>
+                        <li><i class="fas fa-check"></i> Titanium case</li>
+                        <li><i class="fas fa-check"></i> Sapphire glass</li>
+                        <li><i class="fas fa-check"></i> ECG monitoring</li>
+                        <li><i class="fas fa-check"></i> Unlimited watch faces</li>
+                    </ul>
+                    <button class="cta-button">Pre-order Now</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="specs" class="tech-specs">
+        <div class="container">
+            <div class="section-title">
+                <h2>Technical Specifications</h2>
+                <p>Premium technology designed for performance</p>
+            </div>
+            <div class="specs-grid">
+                <div class="spec-item">
+                    <div class="spec-value">1.5"</div>
+                    <div class="spec-label">AMOLED Display</div>
+                </div>
+                <div class="spec-item">
+                    <div class="spec-value">14 days</div>
+                    <div class="spec-label">Battery Life</div>
+                </div>
+                <div class="spec-item">
+                    <div class="spec-value">5ATM</div>
+                    <div class="spec-label">Water Resistance</div>
+                </div>
+                <div class="spec-item">
+                    <div class="spec-value">32GB</div>
+                    <div class="spec-label">Storage</div>
+                </div>
+                <div class="spec-item">
+                    <div class="spec-value">Dual-core</div>
+                    <div class="spec-label">Processor</div>
+                </div>
+                <div class="spec-item">
+                    <div class="spec-value">Always-on</div>
+                    <div class="spec-label">Display Mode</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer id="contact">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>NovaWatch</h3>
+                    <p>Redefining wearable technology with elegant design and powerful features for the modern individual.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                <div class="footer-column">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="#">Home</a></li>
+                        <li><a href="#features">Features</a></li>
+                        <li><a href="#pricing">Pricing</a></li>
+                        <li><a href="#specs">Tech Specs</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Support</h3>
+                    <ul>
+                        <li><a href="#">FAQ</a></li>
+                        <li><a href="#">Shipping Info</a></li>
+                        <li><a href="#">Returns & Exchanges</a></li>
+                        <li><a href="#">Warranty</a></li>
+                        <li><a href="#">User Manual</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Newsletter</h3>
+                    <p>Subscribe to receive updates, access to exclusive deals, and more.</p>
+                    <div class="footer-form">
+                        <input type="email" placeholder="Your email address" style="width: 100%; padding: 12px; margin-bottom: 10px; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); border-radius: 5px; color: white;">
+                        <button class="cta-button" style="width: 100%;">Subscribe</button>
+                    </div>
+                </div>
+            </div>
+            <div class="copyright">
+                &copy; 2023 NovaWatch. All rights reserved. Designed with ❤ for smarter living.
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Update watch time in real-time
+        function updateWatchTime() {
+            const now = new Date();
+            const hours = String(now.getHours()).padStart(2, '0');
+            const minutes = String(now.getMinutes()).padStart(2, '0');
+            document.querySelector('.watch-time').textContent = `${hours}:${minutes}`;
+            
+            // Update date
+            const options = { year: 'numeric', month: 'short', day: 'numeric' };
+            const dateStr = now.toLocaleDateString('en-US', options);
+            document.querySelector('.watch-date').textContent = dateStr;
+        }
+        
+        // Initialize and update every minute
+        updateWatchTime();
+        setInterval(updateWatchTime, 60000);
+        
+        // Add hover effect to watch
+        const watchContainer = document.querySelector('.watch-container');
+        watchContainer.addEventListener('mousemove', (e) => {
+            const xAxis = (window.innerWidth / 2 - e.pageX) / 25;
+            const yAxis = (window.innerHeight / 2 - e.pageY) / 25;
+            watchContainer.style.transform = rotateY(`${xAxis}deg) rotateX(${yAxis}deg`);
+        });
+        
+        watchContainer.addEventListener('mouseenter', () => {
+            watchContainer.style.transition = 'none';
+        });
+        
+        watchContainer.addEventListener('mouseleave', () => {
+            watchContainer.style.transition = 'transform 0.5s ease';
+            watchContainer.style.transform = 'rotateY(0deg) rotateX(0deg)';
+        });
+        
+        // Add smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+        
+        // Add animation to feature cards when they come into view
+        const featureCards = document.querySelectorAll('.feature-card');
+        
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, {
+            threshold: 0.1
+        });
+        
+        featureCards.forEach(card => {
+            card.style.transition = 'all 0.5s ease';
+            observer.observe(card);
+        });
+        
+        // Add search functionality
+        const searchInput = document.querySelector('.watch-search');
+        searchInput.addEventListener('keyup', (e) => {
+            if (e.key === 'Enter') {
+                alert('Searching for: ${searchInput.value}');
+                searchInput.value = '';
+            }
+        });
+        
+        // Add button click handlers
+        document.querySelectorAll('.cta-button').forEach(button => {
+            button.addEventListener('click', function() {
+                if(this.textContent.includes('Pre-order')) {
+                    alert('Redirecting to pre-order page...');
+                } else if(this.textContent.includes('Explore')) {
+                    document.getElementById('features').scrollIntoView({ behavior: 'smooth' });
+                } else if(this.textContent.includes('Demo')) {
+                    alert('Launching product demo video...');
+                } else if(this.textContent.includes('Subscribe')) {
+                    const email = this.previousElementSibling.querySelector('input').value;
+                    if(email.includes('@')) {
+                        alert('Thank you for subscribing with: `${email}`');
+                    } else {
+                        alert('Please enter a valid email address');
+                    }
+                }
+            });
+        });
+    </script>
+</body>
+</html>
