@@ -127,17 +127,18 @@
         }
 
         .cta-button {
-           background: linear-gradient(135deg, var(--accent), var(--accent-alt));
-           color: var(--primary);
-           border: none;
-           padding: 12px 24px;
-           border-radius: 30px;
-           font-weight: 600;
-           cursor: pointer;
-           transition: all 0.3s ease;
-           font-size: 16px;
-           box-shadow: 0 4px 20px rgba(0, 217, 255, 0.3);
+            background: linear-gradient(135deg, var(--accent), var(--accent-alt));
+            color: var(--primary);
+            border: none;
+            padding: 12px 24px;
+            border-radius: 30px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 16px;
+            box-shadow: 0 4px 20px rgba(0, 217, 255, 0.3);
         }
+
         .cta-button:hover {
             transform: translateY(-3px);
             box-shadow: 0 6px 25px rgba(0, 217, 255, 0.4);
@@ -655,11 +656,11 @@
             }
 
             .hero {
-                padding: 20px;
+                padding: 60px 0 20px;
             }
 
             h1 {
-                font-size: 2rem;
+                font-size: 36px;
             }
 
             .subtitle {
@@ -719,7 +720,7 @@
         <div class="container">
             <div class="hero-content">
                 <div class="hero-text">
-                    <div class="tagline">SMARTER TIME: SMARTER LIFE </div>
+                    <div class="tagline">Smarter Time: Smarter Life</div>
                     <h1>The Future on <span>Your Wrist</span></h1>
                     <p class="subtitle">Experience the next generation of wearable technology. Seamlessly connected, intuitively designed, and elegantly crafted for modern life.</p>
                     <div class="hero-buttons">
@@ -934,7 +935,7 @@
             const now = new Date();
             const hours = String(now.getHours()).padStart(2, '0');
             const minutes = String(now.getMinutes()).padStart(2, '0');
-            document.querySelector('.watch-time').textContent = `${hours}:${minutes}`;
+            document.querySelector('.watch-time').textContent = ${hours}:${minutes};
             
             // Update date
             const options = { year: 'numeric', month: 'short', day: 'numeric' };
@@ -951,7 +952,7 @@
         watchContainer.addEventListener('mousemove', (e) => {
             const xAxis = (window.innerWidth / 2 - e.pageX) / 25;
             const yAxis = (window.innerHeight / 2 - e.pageY) / 25;
-            watchContainer.style.transform = rotateY(`${xAxis}deg) rotateX(${yAxis}deg`);
+            watchContainer.style.transform = rotateY(${xAxis}deg) rotateX(${yAxis}deg);
         });
         
         watchContainer.addEventListener('mouseenter', () => {
@@ -995,7 +996,7 @@
         const searchInput = document.querySelector('.watch-search');
         searchInput.addEventListener('keyup', (e) => {
             if (e.key === 'Enter') {
-                alert('Searching for: ${searchInput.value}');
+                alert(Searching for: "${searchInput.value}");
                 searchInput.value = '';
             }
         });
@@ -1012,7 +1013,7 @@
                 } else if(this.textContent.includes('Subscribe')) {
                     const email = this.previousElementSibling.querySelector('input').value;
                     if(email.includes('@')) {
-                        alert('Thank you for subscribing with: `${email}`');
+                        alert(Thank you for subscribing with: ${email});
                     } else {
                         alert('Please enter a valid email address');
                     }
