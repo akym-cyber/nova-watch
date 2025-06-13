@@ -935,7 +935,7 @@
             const now = new Date();
             const hours = String(now.getHours()).padStart(2, '0');
             const minutes = String(now.getMinutes()).padStart(2, '0');
-            document.querySelector('.watch-time').textContent = ${hours}:${minutes};
+            document.querySelector('.watch-time').textContent = $`{hours}:${minutes}`;
             
             // Update date
             const options = { year: 'numeric', month: 'short', day: 'numeric' };
