@@ -996,7 +996,7 @@
         const searchInput = document.querySelector('.watch-search');
         searchInput.addEventListener('keyup', (e) => {
             if (e.key === 'Enter') {
-                alert(Searching for: "${searchInput.value}");
+                alert(`Searching for: "${searchInput.value}"`);
                 searchInput.value = '';
             }
         });
@@ -1013,7 +1013,7 @@
                 } else if(this.textContent.includes('Subscribe')) {
                     const email = this.previousElementSibling.querySelector('input').value;
                     if(email.includes('@')) {
-                        alert(Thank you for subscribing with: ${email});
+                        alert(`Thank you for subscribing with: ${email}`);
                     } else {
                         alert('Please enter a valid email address');
                     }
